@@ -1,0 +1,24 @@
+httpserver:
+    image: docker.zuoyetong.com.cn:8888/xucb/reconginze_service
+    volumes:
+     - /etc/localtime:/etc/localtime:ro
+     - /etc/timezone:/etc/timezone:ro
+     - /data/fuelsets/:/data/fuelsets/:ro
+     - ./logs/:/recognize_service/logs/
+     - ./:/recognize_service/
+    command: nginx -p . -c nginx.conf -g 'daemon off;'
+    working_dir: /recognize_service/
+    #restart: always
+    ports:
+     - "7002:80"
+    links:
+     - redis:redis
+
+redis:
+    image: "docker.zuoyetong.com.cn:8888/redis:3"
+    restart: always
+    volumes:
+     - /etc/localtime:/etc/localtime:ro
+     - /etc/timezone:/etc/timezone:ro
+    # ports:
+    #     - "6379"
