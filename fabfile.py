@@ -4,25 +4,21 @@
 # Author: XuChongBo
 # Created: 2016 Feb 18 17:32 
 
-
 """
 run "fab -l"  to show the tasks
 
 usage:  
-fab deploy:test   OR  fab -f fabfile.py deploy:test
 
 usage:
-fab deploy:product
-fab deploy:test
+    fab image:build,version
+    fab image:build
+    fab image:push
 
-fab image:build
-fab image:push
+    fab dev:start
+    fab dev:stop
 
-fab dev:start
-fab dev:stop
-
+    fab -f fabfile.py dev:start
 """
-
 
 from fabric.api import *
 from fabric.colors import green, red, yellow, blue
@@ -33,9 +29,6 @@ import os
 env.hosts = ['180.150.190.50:666']
 env.user = "xucb"
 #env.password = 'cmcom@secu'
-
-
-
 
 
 
